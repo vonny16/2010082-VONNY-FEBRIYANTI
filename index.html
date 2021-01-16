@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vonny Febriyanti</title>
+  <style type="text/css">
+    #container {
+        display: flex;
+        border: pink;
+    }
+    
+    #left {
+        width: 30%;
+        background-color: pink;
+    }
+    
+    #right {
+        width: 30%;
+        border: rgb(241, 238, 207);
+        background-color: rgb(240, 187, 196);
+    }
+    
+</style>
+
+</head>
+<body>
+<pre>
+<h1>**Pemesanan Tiket Maskapai**</h1>
+<br>=====================================================</br>
+<div id="container">
+    <div id="left">
+<table>
+<tr>
+<td>Nama Pemesan</td>
+<td> : </td>
+<td><input type="text" name="nama" id="nama"></td>
+<tr>
+</tr><td>Jumlah Tiket</td>
+<td> : </td>
+<td><input type="text" name="tiket" id="tiket"></td>
+</tr>
+<tr>
+<td>Kelas</td>
+<td> : </td>
+<td>
+<select name="kelas" id="kelas">
+<option value="Ekonomi">Ekonomi</option>
+<option value="Bisnis">Bisnis</option>
+<option value="Eksekutif">Eksekutif</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Tujuan</td>
+<td> : </td>
+<td>
+<select name="tujuan" id="tujuan">
+<option value="Bali">Bali</option>
+<option value="Jakarta">Jakarta</option>
+<option value="Yogyakarta">Yogyakarta</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Bagasi</td>
+<td> : </td>
+<td>
+<input type="radio" name="bagasi" id="5kg" value="5kg"><label for="5kg">5kg</label>
+<input type="radio" name="bagasi" id="10kg" value="10kg"><label for="10kg">10kg</label>
+<input type="radio" name="bagasi" id="15kg" value="15kg"><label for="15kg">15kg</label>
+</td>
+</tr>
+<tr>
+<td>Asuransi</td>
+<td> : </td>
+<td>
+<input type="checkbox" name="Asuransi" id="Asuransi Jiwa" value="Asuransi Jiwa"><label for="Asuransi Jiwa">Asuransi Jiwa</label></br>
+<input type="checkbox" name="Asuransi" id="Asuransi Kecelakaan" value="Asuransi Kecelakaan"><label for="Asuransi Kecelakaan">Asuransi Kecelakaan</label></br>
+<input type="checkbox" name="Asuransi" id="Asuransi Keterlambatan" value="Asuransi Keterlambatan"><label for="Asuransi Keterlambatan">Asuransi Keterlambatan</label></br>
+</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>
+<input type="button" id="simpan" value="simpan" /></br>
+<input type="reset" name="batal" value="batal" /></br>
+</td>
+</tr> 
+</pre>
+</table>
+</div>
+</div>
+<div id="right">
+    <div id="result">
+<table border="1">
+<h2>***Data Pemesanan Tiket***</h2></br>
+    <tr>
+        <td>Nama Pemesan</td>
+        <td>:</td>
+        <td>
+            <div id="hasilNama"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Jumlah</td>
+        <td>:</td>
+        <td>
+            <div id="hasilJumlah"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Kelas</td>
+        <td>:</td>
+        <td>
+            <div id="hasilKelas"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Tujuan</td>
+        <td>:</td>
+        <td>
+            <div id="hasilTujuan"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Bagasi</td>
+        <td>:</td>
+        <td>
+            <div id="hasilBagasi"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Asuransi</td>
+        <td>:</td>
+        <td>
+            <div id="hasilAsuransi"></div>
+        </td>
+    </tr>
+    <tr>
+        <td>Total Harga</td>
+        <td>:</td>
+        <td>
+            <div id="hasilTotalHarga"></div>
+        </td>
+    </tr>
+    
+</table>
+</div>
+</div>
+
+<script type="text/javascript">
+  document.getElementById('simpan').addEventListener('click', simpan);
+
+  function simpan() {
+      let nama = document.getElementById('nama').value;
+      let tiket = document.getElementById('tiket').value;
+      diskon = 0;
+      if (tiket >= 3) {
+          diskon = 30;
+      }
+      let kelas = document.getElementById('kelas').value;
+      harga = 0;
+      if (kelas == 'Ekonomi') {
+          kelas = 'Ekonomi (Air Mineral)';
+          harga = 1000000;
+      } else if (kelas == 'Bisnis') {
+          kelas = 'Bisnis (Snack)';
+          harga = 2000000;
+      } else if (kelas == 'Eksekutif') {
+          kelas = 'Eksekutif (Makan)';
+          harga = 3000000;
+      }
+      let tujuan = document.getElementById('tujuan').value;
+      let bagasi = document.querySelector('input[name="bagasi"]:checked').value;
+      if (bagasi == '5kg') {
+          hargaBagasi = 100000;
+          bagasi = `5kg (${hargaBagasi})`;
+      } else if (bagasi == '10kg') {
+          hargaBagasi = 150000;
+          bagasi = `10kg (${hargaBagasi})`;
+      } else if (bagasi == '15kg') {
+          hargaBagasi = 200000;
+          bagasi = `15kg (${hargaBagasi})`;
+      }
+      let asuransi = document.querySelectorAll('input[name="asuransi"]:checked')
+      biayaAsuransi = 0;
+      dataAsuransi = '';
+      for (i = 0; i < asuransi.length; i++) {
+          biayaAsuransi = biayaAsuransi + 50000;
+          dataAsuransi += asuransi[i].value;
+          dataAsuransi += i < asuransi.length - 1 ? ' , ' : '';
+      }
+      dataAsuransi = dataAsuransi + ` (${biayaAsuransi})`;
+      hargaTiket = harga * tiket;
+      hargaDiskon = (hargaTiket * diskon) / 100;
+      totalHarga = hargaTiket - hargaDiskon + hargaBagasi + biayaAsuransi;
+
+      document.getElementById('hasilNama').innerHTML = nama;
+      document.getElementById('hasilJumlah').innerHTML = tiket;
+      document.getElementById('hasilKelas').innerHTML = kelas;
+      document.getElementById('hasilTujuan').innerHTML = tujuan;
+      document.getElementById('hasilBagasi').innerHTML = bagasi;
+      document.getElementById('hasilAsuransi').innerHTML = dataAsuransi;
+      document.getElementById('hasilTotalHarga').innerHTML = totalHarga;
+  };
+</script>
+</body>
+
+</html>
